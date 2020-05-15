@@ -1,9 +1,10 @@
-﻿using PaymentGateway.Services.Models;
+﻿using System.Threading.Tasks;
+using PaymentGateway.Services.Models;
 
 namespace PaymentGateway.Services
 {
     public interface IPaymentProcessor
     {
-        PaymentResult ProcessPayment(PaymentToProcess map);
+        Task<PaymentResult> ProcessPaymentAsync(PaymentToProcess map);
     }
 }

@@ -47,13 +47,13 @@ namespace PaymentGateway.Controllers
 
         // POST api/values
         [HttpPost]
-        public ActionResult<ProcessPaymentResponse> ProcessPayment([FromBody] ProcessPaymentRequest paymentRequest)
+        public async Task<ActionResult<ProcessPaymentResponse>> ProcessPaymentAsync([FromBody] ProcessPaymentRequest paymentRequest)
         {
             // ensure that the api caller can actually obtain these payment details.
             // introduce authentication, and to authorise - verify on MerchantId
             //
             // Also add exception handling, log and return a nice 500 response.
-            var transactionResult = this.paymentProcessor.ProcessPayment(mapper.Map<PaymentToProcess>(paymentRequest));
+            var transactionResult = await this.paymentProcessor.ProcessPaymentAsync(mapper.Map<PaymentToProcess>(paymentRequest));
             return new ActionResult<ProcessPaymentResponse>(new ProcessPaymentResponse() { TransactionId = transactionResult.TransactionId, Success = transactionResult.Success });
         }
     }

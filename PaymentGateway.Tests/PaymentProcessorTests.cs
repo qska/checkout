@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Moq;
 using PaymentGateway.Banking;
@@ -14,12 +15,12 @@ namespace PaymentGateway.Tests
     public class PaymentProcessorTests
     {
         [Fact]
-        public void ProcessPaymentExecutesSuccessfully()
+        public async Task ProcessPaymentExecutesSuccessfully()
         {
             // Arrange
             var mockBankingGateway = new Mock<IBankingGateway>();
-            mockBankingGateway.Setup(x => x.ProcessPayment(It.IsAny<BankingProcessPaymentRequest>()))
-                .Returns(new BankingProcessPaymentResponse()
+            mockBankingGateway.Setup(x => x.ProcessPaymentAsync(It.IsAny<BankingProcessPaymentRequest>()))
+                .ReturnsAsync(new BankingProcessPaymentResponse()
                     { PaymentTranscationId = Guid.NewGuid(), Status = StatusEnum.Success});
             var mockPaymentService = new Mock<IPaymentService>();
 
@@ -27,7 +28,7 @@ namespace PaymentGateway.Tests
                 AutomapperSingleton.Mapper);
 
             // Act
-            var result = sut.ProcessPayment(new PaymentToProcess()
+            var result = await sut.ProcessPaymentAsync(new PaymentToProcess()
             {
                 Amount = 10, CardNumber = "1234567890123456", Currency = "GBP", Cvv = "000", ExpiryMonth = 10,
                 ExpiryYear = 2020, MerchantId = Guid.NewGuid()
@@ -39,7 +40,7 @@ namespace PaymentGateway.Tests
         }
 
         [Fact]
-        public void ProcessPaymentFailsGracefully()
+        public async Task ProcessPaymentFailsGracefully()
         {
             // Arrange
             var mockBankingGateway = new Mock<IBankingGateway>();
@@ -50,7 +51,7 @@ namespace PaymentGateway.Tests
 
             // Act
             // this will result in a null ref exception in the banking gateway
-            var result = sut.ProcessPayment(new PaymentToProcess()
+            var result = await sut.ProcessPaymentAsync(new PaymentToProcess()
             {
                 Amount = 10,
                 CardNumber = "1234567890123456",

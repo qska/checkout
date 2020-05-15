@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using AutoMapper;
 using PaymentGateway.Banking;
 using PaymentGateway.Banking.Contracts;
@@ -20,7 +21,7 @@ namespace PaymentGateway.Services
             this.mapper = mapper;
         }
 
-        public PaymentResult ProcessPayment(PaymentToProcess paymentRequest)
+        public async Task<PaymentResult> ProcessPaymentAsync(PaymentToProcess paymentRequest)
         {
             var bankingRequest = this.mapper.Map<BankingProcessPaymentRequest>(paymentRequest);
             var paymentData = this.mapper.Map<Payment>(paymentRequest);
@@ -31,7 +32,7 @@ namespace PaymentGateway.Services
                 paymentData.CardNumber.Substring(paymentData.CardNumber.Length - 4).PadLeft(16, '*');
             try
             {
-                var bankingResponse = this.bankingGateway.ProcessPayment(bankingRequest);
+                var bankingResponse = await this.bankingGateway.ProcessPaymentAsync(bankingRequest);
                 paymentData.TransactionId = bankingResponse.PaymentTranscationId;
 
                 if (bankingResponse.Status == StatusEnum.Success)

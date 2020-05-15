@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using PaymentGateway.Banking.Contracts;
 using PaymentGateway.Data;
+using PaymentGateway.Requests;
 using PaymentGateway.Responses;
 using PaymentGateway.Services.Models;
 
@@ -20,6 +21,7 @@ namespace PaymentGateway
             CreateMap<PaymentToProcess, Payment>();
             CreateMap<Payment, PaymentData>();
             CreateMap<PaymentData, Payment>();
+            CreateMap<ProcessPaymentRequest, PaymentToProcess>();
         }
     }
 }
