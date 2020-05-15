@@ -1,15 +1,15 @@
 # Projects within the solution:
-PaymentGateway - the "proper" PaymentGateway service.
-PaymentGateway.Banking - the integration library to connect with an external banking platform
-PaymentGateway.BankingMock - a simple implementation pretending to be a banking platform, returning random Transaction Ids.
-PaymentGateway.Data - the data layer for the main application. Empty scaffolding, to be replaced with proper persistance code.
-PaymentGateway.Services - the service layer for the main application.
-PaymentGateway.Tests - the catch-all unit test project, to be replaced with separate test project for each project in the solution.
+* PaymentGateway - the "proper" PaymentGateway service.
+* PaymentGateway.Banking - the integration library to connect with an external banking platform
+* PaymentGateway.BankingMock - a simple implementation pretending to be a banking platform, returning random Transaction Ids.
+* PaymentGateway.Data - the data layer for the main application. Empty scaffolding, to be replaced with proper persistance code.
+* PaymentGateway.Services - the service layer for the main application.
+* PaymentGateway.Tests - the catch-all unit test project, to be replaced with separate test project for each project in the solution.
 
 ## Next steps:
-Adding Swagger would be nice
-Build & Deploy steps a must, for CI&CD configuration
-Logging support
+* Adding Swagger would be nice
+* Build & Deploy steps a must, for CI&CD configuration
+* Logging support
 
 ## API Usage:
 
