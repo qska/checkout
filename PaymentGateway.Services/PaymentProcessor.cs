@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using PaymentGateway.Banking;
 using PaymentGateway.Banking.Contracts;
-using PaymentGateway.Data;
 using PaymentGateway.Services.Models;
 
 namespace PaymentGateway.Services

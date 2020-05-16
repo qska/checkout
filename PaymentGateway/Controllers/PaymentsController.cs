@@ -51,6 +51,7 @@ namespace PaymentGateway.Controllers
         {
             // ensure that the api caller can actually obtain these payment details.
             // introduce authentication, and to authorise - verify on MerchantId
+            // Plumb in request model validation
             //
             // Also add exception handling, log and return a nice 500 response.
             var transactionResult = await this.paymentProcessor.ProcessPaymentAsync(mapper.Map<PaymentToProcess>(paymentRequest));

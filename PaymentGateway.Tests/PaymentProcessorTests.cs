@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Moq;
@@ -25,7 +23,7 @@ namespace PaymentGateway.Tests
             var mockPaymentService = new Mock<IPaymentService>();
 
             var sut = new PaymentProcessor(mockBankingGateway.Object, mockPaymentService.Object,
-                AutomapperSingleton.Mapper);
+                AutoMapperSingleton.Mapper);
 
             // Act
             var result = await sut.ProcessPaymentAsync(new PaymentToProcess()
@@ -47,7 +45,7 @@ namespace PaymentGateway.Tests
             var mockPaymentService = new Mock<IPaymentService>();
 
             var sut = new PaymentProcessor(mockBankingGateway.Object, mockPaymentService.Object,
-                AutomapperSingleton.Mapper);
+                AutoMapperSingleton.Mapper);
 
             // Act
             // this will result in a null ref exception in the banking gateway

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using AutoMapper;
+﻿using AutoMapper;
 using PaymentGateway.Banking.Contracts;
 using PaymentGateway.Data;
 using PaymentGateway.Responses;
@@ -9,7 +6,7 @@ using PaymentGateway.Services.Models;
 
 namespace PaymentGateway.Tests
 {
-    public class AutomapperSingleton
+    public class AutoMapperSingleton
     {
         private static IMapper _mapper;
 

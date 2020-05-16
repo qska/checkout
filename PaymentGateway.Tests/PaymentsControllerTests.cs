@@ -1,13 +1,10 @@
 using System;
-using System.Configuration;
 using AutoFixture.Xunit2;
-using AutoMapper;
 using FluentAssertions;
 using Moq;
 using PaymentGateway.Controllers;
 using PaymentGateway.Services;
 using PaymentGateway.Services.Models;
-using Microsoft.AspNetCore.Mvc.Abstractions;
 using Xunit;
 
 namespace PaymentGateway.Tests
@@ -24,7 +21,7 @@ namespace PaymentGateway.Tests
             mockPayment.TransactionId = paymentId;
 
             mockPaymentService.Setup(x => x.GetPaymentById(paymentId)).Returns(mockPayment);
-            var controller = new PaymentsController(AutomapperSingleton.Mapper, new Mock<IPaymentProcessor>().Object, mockPaymentService.Object );
+            var controller = new PaymentsController(AutoMapperSingleton.Mapper, new Mock<IPaymentProcessor>().Object, mockPaymentService.Object );
 
             // Act
             var result = controller.Get(paymentId);
@@ -41,7 +38,7 @@ namespace PaymentGateway.Tests
             var paymentId = Guid.NewGuid();
 
             mockPaymentService.Setup(x => x.GetPaymentById(paymentId)).Returns((Payment)null);
-            var controller = new PaymentsController(AutomapperSingleton.Mapper, new Mock<IPaymentProcessor>().Object, mockPaymentService.Object);
+            var controller = new PaymentsController(AutoMapperSingleton.Mapper, new Mock<IPaymentProcessor>().Object, mockPaymentService.Object);
 
             // Act
             var result = controller.Get(paymentId);
