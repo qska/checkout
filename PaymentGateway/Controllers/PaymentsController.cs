@@ -55,6 +55,8 @@ namespace PaymentGateway.Controllers
             //
             // Also add exception handling, log and return a nice 500 response.
             var transactionResult = await this.paymentProcessor.ProcessPaymentAsync(mapper.Map<PaymentToProcess>(paymentRequest));
+
+            // We might want to return a 201 response and the GET Url for the payment we just created.
             return new ActionResult<ProcessPaymentResponse>(new ProcessPaymentResponse() { TransactionId = transactionResult.TransactionId, Success = transactionResult.Success });
         }
     }

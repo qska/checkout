@@ -7,9 +7,11 @@
 * PaymentGateway.Tests - the catch-all unit test project, to be replaced with separate test project for each project in the solution.
 
 ## Next steps:
+* Add request validation (FluentValidation is good)
+* Implement Luhn algorithm validation for the card number
+* Add logging (log4net is simple)
 * Adding Swagger would be nice
-* Build & Deploy steps a must, for CI&CD configuration
-* Logging support
+* Build & Deploy steps a must, for CI&CD configuration. A Cake script would work.
 
 ## API Usage:
 
