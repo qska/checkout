@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGateway.Data", "Paym
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGateway.Banking", "PaymentGateway.Banking\PaymentGateway.Banking.csproj", "{B74095F8-E104-4C4D-851F-27B88A5D2A44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Services", "PaymentGateway.Services\PaymentGateway.Services.csproj", "{B2044F7E-B6DB-4D2F-B007-9C7A8D03B650}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGateway.Services", "PaymentGateway.Services\PaymentGateway.Services.csproj", "{B2044F7E-B6DB-4D2F-B007-9C7A8D03B650}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.BankingMock", "PaymentGateway.BankingMock\PaymentGateway.BankingMock.csproj", "{0AC9A80A-AACE-456F-8708-9FB6CA695EA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGateway.BankingMock", "PaymentGateway.BankingMock\PaymentGateway.BankingMock.csproj", "{0AC9A80A-AACE-456F-8708-9FB6CA695EA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PaymentGateway.Banking;
-using PaymentGateway.Banking.Contracts;
-using PaymentGateway.Data;
 using PaymentGateway.Requests;
 using PaymentGateway.Responses;
 using PaymentGateway.Services;
@@ -30,8 +26,16 @@ namespace PaymentGateway.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public ActionResult<GetPaymentResponse> Get(Guid paymentId)
         {
+            var currentUser = HttpContext.User;
+            int spendingTimeWithCompany = 0;
+
+            if (currentUser.HasClaim(c => c.Type == "abc"))
+            {
+            }
+
             // ensure that the api caller can actually obtain these payment details.
             // introduce authentication, and to authorise - verify on MerchantId
 
@@ -47,6 +51,7 @@ namespace PaymentGateway.Controllers
 
         // POST api/values
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<ProcessPaymentResponse>> ProcessPaymentAsync([FromBody] ProcessPaymentRequest paymentRequest)
         {
             // ensure that the api caller can actually obtain these payment details.
