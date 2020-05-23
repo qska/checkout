@@ -4,8 +4,14 @@ namespace PaymentGateway.Services.Models
 {
     public class PaymentResult
     {
-        public Guid TransactionId { get; set; }
+        public PaymentResult(Guid transcationId, bool success)
+        {
+            this.TransactionId = transcationId;
+            this.Success = success;
+        }
 
-        public bool Success { get; set; }
+        public Guid TransactionId { get; }
+
+        public bool Success { get; }
     }
 }

@@ -2,6 +2,9 @@
 Project supports Swagger, the URL is configured as:
 https://localhost:44355/swagger/index.html
 
+# Postman collection
+(embed a file)
+
 # Projects within the solution:
 * PaymentGateway - the "proper" PaymentGateway service.
 * PaymentGateway.Banking - the integration library to connect with an external banking platform
@@ -17,9 +20,20 @@ https://localhost:44355/swagger/index.html
 
 ## API Usage:
 
-The minimum payload to get any meaningful output from the system is:
+## Login:
+
+Verifies the username and password against a known list of users.
+Username: Marcin
+Password: abc123
+Will return a JWT token for a user with MerchantId 'be9e09d5-2bf9-45b5-b35b-de3d68f249d4'
+
+Username: Intruder
+Password: <any>
+Will return a JWT token for a user with MerchantId '35122e54-f5f1-4872-9ad1-3d2e5216bc90'
 
 ## Payment Processor:
+Note - I couldn't quite get the locally issued tokens to work correctly, hence the Bearer token is not currently required.
+
 Executes the payment via the banking provider.
 Initial validation occurs, based on a Luhn validation of the card number, and presence of all required fields.
 Required fields:
@@ -35,7 +49,7 @@ Sample request:
 	POST https://localhost:44355/api/payments 
 	{
 		CardNumber: "0123456789123456",
-		MerchantId: "1",
+		MerchantId: "be9e09d5-2bf9-45b5-b35b-de3d68f249d4",
 		ExpiryMonth: "01",
 		ExpiryYear: "01",
 		Amount: 10,

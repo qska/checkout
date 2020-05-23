@@ -56,7 +56,7 @@ namespace PaymentGateway.Services
             // send pub/sub events here (if we want to notify any other systems)
             this.paymentService.AddPayment(paymentData);
 
-            return new PaymentResult() { Success = paymentData.Success, TransactionId = paymentData.TransactionId };
+            return new PaymentResult(paymentData.TransactionId, paymentData.Success);
         }
     }
 }

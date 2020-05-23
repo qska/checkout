@@ -71,10 +71,10 @@ namespace PaymentGateway.Controllers
 
             if (login.Username == "Marcin" && login.Password == "abc123")
             {
-                user = new UserModel { Username = "Marcin Brzezinski", EmailAddress = "marcin@brzezinski.net", MerchantId = 1 };
+                user = new UserModel { Username = "Marcin Brzezinski", EmailAddress = "marcin@brzezinski.net", MerchantId = new Guid("be9e09d5-2bf9-45b5-b35b-de3d68f249d4") };
             } else if (login.Username == "Intruder")
             {
-                user = new UserModel { Username = "Intruder", EmailAddress = "other@company.com", MerchantId = 100 };
+                user = new UserModel { Username = "Intruder", EmailAddress = "other@company.com", MerchantId = new Guid("35122e54-f5f1-4872-9ad1-3d2e5216bc90") };
             }
             return user;
         }
