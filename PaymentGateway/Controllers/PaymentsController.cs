@@ -25,7 +25,12 @@ namespace PaymentGateway.Controllers
             this.paymentService = paymentService;
         }
 
-        [HttpGet("{id}")]
+        /// <summary>
+        /// Retrieves and returns the Payment details for a given payment Id.
+        /// </summary>
+        /// <param name="paymentId">PaymentId, previously obtained from ProcessPaymentAsync endpoint</param>
+        /// <returns>Payment details</returns>
+        [HttpGet("{paymentId}")]
         [Authorize]
         public ActionResult<GetPaymentResponse> Get(Guid paymentId)
         {
@@ -49,7 +54,11 @@ namespace PaymentGateway.Controllers
             return NotFound();
         }
 
-        // POST api/values
+        /// <summary>
+        /// Validates and executes the payment request.
+        /// </summary>
+        /// <param name="paymentRequest">Payment request object</param>
+        /// <returns>Transaction Id</returns>
         [HttpPost]
         [Authorize]
         public async Task<ActionResult<ProcessPaymentResponse>> ProcessPaymentAsync([FromBody] ProcessPaymentRequest paymentRequest)

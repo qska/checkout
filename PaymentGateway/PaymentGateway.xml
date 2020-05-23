@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PaymentGateway</name>
+    </assembly>
+    <members>
+        <member name="M:PaymentGateway.Controllers.LoginController.Login(PaymentGateway.Models.LoginModel)">
+            <summary>
+            If login was successful - returns a new JSON Web Token.
+            </summary>
+            <param name="login">User login details</param>
+            <returns>JSON Web Token / Unauthorized</returns>
+        </member>
+        <member name="M:PaymentGateway.Controllers.PaymentsController.Get(System.Guid)">
+            <summary>
+            Retrieves and returns the Payment details for a given payment Id.
+            </summary>
+            <param name="paymentId">PaymentId, previously obtained from ProcessPaymentAsync endpoint</param>
+            <returns>Payment details</returns>
+        </member>
+        <member name="M:PaymentGateway.Controllers.PaymentsController.ProcessPaymentAsync(PaymentGateway.Requests.ProcessPaymentRequest)">
+            <summary>
+            Validates and executes the payment request.
+            </summary>
+            <param name="paymentRequest">Payment request object</param>
+            <returns>Transaction Id</returns>
+        </member>
+    </members>
+</doc>

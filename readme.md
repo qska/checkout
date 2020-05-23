@@ -1,3 +1,7 @@
+# API Documentation
+Project supports Swagger, the URL is configured as:
+https://localhost:44355/swagger/index.html
+
 # Projects within the solution:
 * PaymentGateway - the "proper" PaymentGateway service.
 * PaymentGateway.Banking - the integration library to connect with an external banking platform
@@ -10,18 +14,34 @@
 * Add request validation (FluentValidation is good)
 * Implement Luhn algorithm validation for the card number
 * Add logging (log4net is simple)
-* Adding Swagger would be nice
-* Build & Deploy steps a must, for CI&CD configuration. A Cake script would work.
 
 ## API Usage:
 
 The minimum payload to get any meaningful output from the system is:
 
-## Data creation:
-POST https://localhost:44355/api/payments 
-{
-	CardNumber: "0123456789123456"
-}
+## Payment Processor:
+Executes the payment via the banking provider.
+Initial validation occurs, based on a Luhn validation of the card number, and presence of all required fields.
+Required fields:
+* CardNumber
+* MerchantId
+* ExpiryMonth
+* ExpiryYear
+* Amount
+* Currency
+* Cvv
+
+Sample request:
+	POST https://localhost:44355/api/payments 
+	{
+		CardNumber: "0123456789123456",
+		MerchantId: "1",
+		ExpiryMonth: "01",
+		ExpiryYear: "01",
+		Amount: 10,
+		Currency: "GBP",
+		Cvv: "000"
+	}
 
 This will return the success/failure flag and the Transaction Id that could later on be used to fetch the transaction details using the endpoint below.
 For now this part is missing the actual persistence and hydration stages - returns stub data.

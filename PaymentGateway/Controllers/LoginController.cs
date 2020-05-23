@@ -2,11 +2,11 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using JWTAuthentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using PaymentGateway.Models;
 
 namespace PaymentGateway.Controllers
 {
@@ -21,9 +21,15 @@ namespace PaymentGateway.Controllers
             _config = config;
         }
 
+        /// <summary>
+        /// If login was successful - returns a new JSON Web Token.
+        /// </summary>
+        /// <param name="login">User login details</param>
+        /// <returns>JSON Web Token / Unauthorized</returns>
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Login([FromBody]UserModel login)
+        
+        public IActionResult Login([FromBody]LoginModel login)
         {
             IActionResult response = Unauthorized();
             var user = AuthenticateUser(login);
@@ -58,12 +64,11 @@ namespace PaymentGateway.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        private UserModel AuthenticateUser(UserModel login)
+        private UserModel AuthenticateUser(LoginModel login)
         {
+            // This method would be better suited to being extracted into a proper service - hard coding basic user for now.
             UserModel user = null;
 
-            //Validate the User Credentials
-            //Demo Purpose, I have Passed HardCoded User Information
             if (login.Username == "Marcin" && login.Password == "abc123")
             {
                 user = new UserModel { Username = "Marcin Brzezinski", EmailAddress = "marcin@brzezinski.net", MerchantId = 1 };
