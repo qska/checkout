@@ -3,10 +3,11 @@ Project supports Swagger, the URL is configured as:
 https://localhost:44355/swagger/index.html
 
 # Postman collection
-(embed a file)
+In the application root folder, there is a Postman collection that is helpful when calling the service.
+PaymentGateway local.postman_collection.json
 
 # Projects within the solution:
-* PaymentGateway - the "proper" PaymentGateway service.
+* PaymentGateway - PaymentGateway service API project.
 * PaymentGateway.Banking - the integration library to connect with an external banking platform
 * PaymentGateway.BankingMock - a simple implementation pretending to be a banking platform, returning random Transaction Ids.
 * PaymentGateway.Data - the data layer for the main application. Empty scaffolding, to be replaced with proper persistance code.
@@ -14,9 +15,8 @@ https://localhost:44355/swagger/index.html
 * PaymentGateway.Tests - the catch-all unit test project, to be replaced with separate test project for each project in the solution.
 
 ## Next steps:
-* Add request validation (FluentValidation is good)
-* Implement Luhn algorithm validation for the card number
-* Add logging (log4net is simple)
+* Add logging (e.g. log4net)
+* Finish off the authentication implementation
 
 ## API Usage:
 
@@ -48,10 +48,10 @@ Required fields:
 Sample request:
 	POST https://localhost:44355/api/payments 
 	{
-		CardNumber: "0123456789123456",
+		CardNumber: "2720992378118650",
 		MerchantId: "be9e09d5-2bf9-45b5-b35b-de3d68f249d4",
 		ExpiryMonth: "01",
-		ExpiryYear: "01",
+		ExpiryYear: "2020",
 		Amount: 10,
 		Currency: "GBP",
 		Cvv: "000"
@@ -61,6 +61,7 @@ This will return the success/failure flag and the Transaction Id that could late
 For now this part is missing the actual persistence and hydration stages - returns stub data.
 
 ## Data retrieval:
+
+We call the endpoint below with a TransactionID parameter that corresponds to the Id returned from the POST endpoint above.
 GET https://localhost:44355/api/payments/df8a4caf-d261-4a7a-b7b3-708dd9a103ec
 
-Notes: The Async/Await pattern could be rolled out fully in the future.

@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "8b764cc3-4a3e-4557-af06-26c3f20600df",
+		"name": "PaymentGateway local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login successfully and obtain the Bearer token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\tUserName: \"Marcin\",\n\tPassword: \"abc123\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44355/api/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44355",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve an existing payment",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJNYXJjaW4gQnJ6ZXppbnNraSIsImVtYWlsIjoibWFyY2luQGJyemV6aW5za2kubmV0IiwiTWVyY2hhbnRJZCI6IjEiLCJqdGkiOiI5ZjRkYTcwYS1jODk0LTRiNjQtODdiOS1hMjY0NWM5YTZiYTMiLCJleHAiOjE1OTAyNjAzMTksImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzU1IiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzNTUifQ.gjrjimwUPe06RqJcefniiuLSAp_s9rG8IrovfOTTK_g",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44355/api/payments/df8a4caf-d261-4a7a-b7b3-708dd9a103ec",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44355",
+					"path": [
+						"api",
+						"payments",
+						"df8a4caf-d261-4a7a-b7b3-708dd9a103ec"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Issue a payment request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\r\n\t\tCardNumber: \"0123456789123456\",\r\n\t\tMerchantId: \"be9e09d5-2bf9-45b5-b35b-de3d68f249d4\",\r\n\t\tExpiryMonth: \"01\",\r\n\t\tExpiryYear: \"2020\",\r\n\t\tAmount: 10,\r\n\t\tCurrency: \"GBP\",\r\n\t\tCvv: \"000\"\r\n\t}"
+				},
+				"url": {
+					"raw": "https://localhost:44355/api/payments",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44355",
+					"path": [
+						"api",
+						"payments"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
